@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.agencybooking.guest.model.Guest;
 import com.example.agencybooking.hotel.dto.HotelDto;
 import com.example.agencybooking.hotel.model.Hotel;
 import com.example.agencybooking.hotel.repository.HotelRepository;
@@ -27,7 +26,10 @@ public class HotelService {
     public Hotel addHotel(HotelDto hotelDto) {
         Hotel hotel = Hotel.builder()
                 .name(hotelDto.getName())
-                .hotelContactDetails(hotelDto.getHotelContactDetails())
+                .email(hotelDto.getEmail())
+                .telNumber(hotelDto.getTelNumber())
+                .mobileNumber(hotelDto.getMobileNumber())
+                .faxNumber(hotelDto.getFaxNumber())
                 .address(hotelDto.getAddress())
                 .rating(hotelDto.getRating())
                 .build();
@@ -38,5 +40,9 @@ public class HotelService {
         hotel.setDateOfLastUpdate(LocalDateTime.now());
 
         return hotelRepository.save(hotel);
+    }
+
+    public Hotel getHotelByEmail(String email) {
+        return hotelRepository.findHotelByEmail(email);
     }
 }

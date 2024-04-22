@@ -38,4 +38,8 @@ public class GuestService {
     public List<Guest> getAllGuest() {
         return guestRepository.findAll();
     }
+
+    public Guest getGuestByEmail(String email) {
+        return guestRepository.findGuestByEmail(email);
+    }
 }

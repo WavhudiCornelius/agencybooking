@@ -1,6 +1,5 @@
 package com.example.agencybooking.hotel.dto;
 
-import com.example.agencybooking.hotel.model.HotelContactDetails;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +8,10 @@ import lombok.Setter;
 @Setter
 public class HotelDto {
     private String name;
-    private HotelContactDetails hotelContactDetails;
+    private String email;
+    private String telNumber;
+    private String mobileNumber;
+    private String faxNumber;
     private String address;
     private int rating;
     private String userOfEntry;
