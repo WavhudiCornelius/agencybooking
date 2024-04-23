@@ -10,12 +10,14 @@ import com.example.agencybooking.booking.service.BookingService;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.DefaultValue;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +32,9 @@ public class BookingController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Booking> getAllBookings() {
-        return bookingService.getAllBookings();
+    public List<Booking> getAllBookings(@QueryParam("page") @DefaultValue("0") int page,
+            @QueryParam("size") @DefaultValue("3") int size) {
+        return bookingService.getAllBookings(page, size);
     }
 
     @GET

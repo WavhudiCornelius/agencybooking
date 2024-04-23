@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.agencybooking.booking.dto.BookingDto;
@@ -25,8 +27,9 @@ public class BookingService {
     private final GuestService guestService;
     private final HotelService hotelService;
 
-    public List<Booking> getAllBookings() {
-        return bookingRepository.findAll();
+    public List<Booking> getAllBookings(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return bookingRepository.findAll(pageable).getContent();
     }
 
     public Booking getBookingById(Long bookingId) {
